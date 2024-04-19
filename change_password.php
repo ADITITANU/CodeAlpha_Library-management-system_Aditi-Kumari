@@ -1,5 +1,4 @@
 <?php 
-    require("functions.php"); 
     session_start(); 
 ?> 
 <!DOCTYPE html> 
@@ -15,7 +14,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> 
         <div class="container-fluid"> 
             <div class="navbar-header"> 
-                <a class="navbar-brand" href="admin_dashboard.php">Library Management System (LMS)</a> 
+                <a class="navbar-brand" href="user_dashboard.php">Library Management System (LMS)</a> 
             </div> 
             <font style="color: white"><span><strong>Welcome: <?php echo $_SESSION['name'];?></strong></span></font> 
             <font style="color: white"><span><strong>Email: <?php echo $_SESSION['email'];?></strong></font> 
@@ -37,7 +36,7 @@
         </div> 
     </nav><br> 
     <span><marquee>This is library mangement system. Library opens at 8:00 AM and close at 8:00 PM</marquee></span><br><br> 
-        <center><h4>Change Admin Password</h4><br></center> 
+        <center><h4>Change Student Password</h4><br></center> 
         <div class="row"> 
             <div class="col-md-4"></div> 
             <div class="col-md-4"> 

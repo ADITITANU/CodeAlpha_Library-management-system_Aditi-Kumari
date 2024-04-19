@@ -1,5 +1,4 @@
 <?php 
-    require("functions.php"); 
     session_start(); 
     #fetch data from database 
     $connection = mysqli_connect("localhost","root",""); 
@@ -7,12 +6,13 @@
     $name = ""; 
     $email = ""; 
     $mobile = ""; 
-    $query = "select * from admins where email = '$_SESSION[email]'"; 
+    $query = "select * from users where email = '$_SESSION[email]'"; 
     $query_run = mysqli_query($connection,$query); 
     while ($row = mysqli_fetch_assoc($query_run)){ 
         $name = $row['name']; 
         $email = $row['email']; 
         $mobile = $row['mobile']; 
+        $address = $row['address']; 
     } 
 ?> 
 <!DOCTYPE html> 
@@ -28,7 +28,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> 
         <div class="container-fluid"> 
             <div class="navbar-header"> 
-                <a class="navbar-brand" href="admin_dashboard.php">Library Management System (LMS)</a> 
+                <a class="navbar-brand" href="view_profile.php">Library Management System (LMS)</a> 
             </div> 
             <font style="color: white"><span><strong>Welcome: <?php echo $_SESSION['name'];?></strong></span></font> 
             <font style="color: white"><span><strong>Email: <?php echo $_SESSION['email'];?></strong></font> 
@@ -50,7 +50,7 @@
         </div> 
     </nav><br> 
     <span><marquee>This is library mangement system. Library opens at 8:00 AM and close at 8:00 PM</marquee></span><br><br> 
-        <center><h4>Admin Profile Detail</h4><br></center> 
+        <center><h4>Student Profile Detail</h4><br></center> 
         <div class="row"> 
             <div class="col-md-4"></div> 
             <div class="col-md-4"> 
@@ -66,6 +66,10 @@
                     <div class="form-group"> 
                         <label for="mobile">Mobile:</label> 
                         <input type="text" value="<?php echo $mobile;?>" class="form-control" disabled> 
+                    </div> 
+                    <div class="form-group"> 
+                        <label for="email">Address:</label> 
+                        <input type="text" value="<?php echo $address;?>" class="form-control" disabled> 
                     </div> 
                 </form> 
             </div> 

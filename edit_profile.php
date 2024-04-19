@@ -1,5 +1,4 @@
 <?php 
-    require("functions.php"); 
     session_start(); 
     #fetch data from database 
     $connection = mysqli_connect("localhost","root",""); 
@@ -7,12 +6,14 @@
     $name = ""; 
     $email = ""; 
     $mobile = ""; 
-    $query = "select * from admins where email = '$_SESSION[email]'"; 
+    $address = ""; 
+    $query = "select * from users where email = '$_SESSION[email]'"; 
     $query_run = mysqli_query($connection,$query); 
     while ($row = mysqli_fetch_assoc($query_run)){ 
         $name = $row['name']; 
         $email = $row['email']; 
         $mobile = $row['mobile']; 
+        $address = $row['address']; 
     } 
 ?> 
 <!DOCTYPE html> 
@@ -36,21 +37,21 @@
               <li class="nav-item dropdown"> 
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown">My Profile </a> 
                 <div class="dropdown-menu"> 
-                    <a class="dropdown-item" href="">View Profile</a> 
+                    <a class="dropdown-item" href="view_profile.php">View Profile</a> 
                     <div class="dropdown-divider"></div> 
-                    <a class="dropdown-item" href="#">Edit Profile</a> 
+                    <a class="dropdown-item" href="edit_profile.php">Edit Profile</a> 
                     <div class="dropdown-divider"></div> 
                     <a class="dropdown-item" href="change_password.php">Change Password</a> 
                 </div> 
               </li> 
               <li class="nav-item"> 
-                <a class="nav-link" href="../logout.php">Logout</a> 
+                <a class="nav-link" href="logout.php">Logout</a> 
               </li> 
             </ul> 
         </div> 
     </nav><br> 
     <span><marquee>This is library mangement system. Library opens at 8:00 AM and close at 8:00 PM</marquee></span><br><br> 
-        <center><h4>Admin Profile Detail</h4><br></center> 
+        <center><h4>Edit Profile</h4><br></center> 
         <div class="row"> 
             <div class="col-md-4"></div> 
             <div class="col-md-4"> 
@@ -66,6 +67,10 @@
                     <div class="form-group"> 
                         <label for="mobile">Mobile:</label> 
                         <input type="text" name="mobile" class="form-control" value="<?php echo $mobile;?>"> 
+                    </div> 
+                    <div class="form-group"> 
+                        <label for="mobile">Address:</label> 
+                        <textarea rows="3" cols="40" name="address" class="form-control"><?php echo $address;?></textarea> 
                     </div> 
                     <button type="submit" name="update" class="btn btn-primary">Update</button> 
                 </form> 
